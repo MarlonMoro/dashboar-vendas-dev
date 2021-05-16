@@ -10,7 +10,7 @@ public class SellerDto {
 
   private Long id;
   private String name;
-  
+
   public SellerDto() {
   }
 
