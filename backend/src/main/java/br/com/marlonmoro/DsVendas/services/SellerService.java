@@ -1,7 +1,6 @@
 package br.com.marlonmoro.DsVendas.services;
 
 import br.com.marlonmoro.DsVendas.dtos.SellerDto;
-import br.com.marlonmoro.DsVendas.entities.Seller;
 import br.com.marlonmoro.DsVendas.repositories.SellerRepository;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,8 +15,8 @@ public class SellerService {
   private ModelMapper mapper;
 
   public List<SellerDto> getAllSellers() {
-    List<Seller> sellers = sellerRepository.findAll();
-    return sellers.stream()
+
+    return sellerRepository.findAll().stream()
         .map(seller -> mapper.map(seller, SellerDto.class))
         .collect(
             Collectors.toList());
