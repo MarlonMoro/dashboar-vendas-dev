@@ -1,9 +1,12 @@
 package br.com.marlonmoro.DsVendas.services;
 
 import br.com.marlonmoro.DsVendas.dtos.SaleDto;
+import br.com.marlonmoro.DsVendas.dtos.SaleSucessDto;
+import br.com.marlonmoro.DsVendas.dtos.SaleSumDto;
 import br.com.marlonmoro.DsVendas.entities.Sale;
 import br.com.marlonmoro.DsVendas.repositories.SaleRepository;
 import br.com.marlonmoro.DsVendas.repositories.SellerRepository;
+import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +30,18 @@ public class SalesService {
     return sales.map(sale -> mapper.map(sale, SaleDto.class));
 
   }
+
+  @Transactional(readOnly = true)
+  public List<SaleSumDto> amountGroupedBySeller() {
+    return saleRepository.amountGroupedBySeller();
+  }
+
+  @Transactional(readOnly = true)
+  public List<SaleSucessDto> sucessGroupedBySeller() {
+    return saleRepository.sucessGroupedBySeller();
+  }
+
+
 
   public SalesService(ModelMapper mapper,
       SaleRepository saleRepository,
